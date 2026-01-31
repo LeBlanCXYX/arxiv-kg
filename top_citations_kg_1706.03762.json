@@ -1,0 +1,771 @@
+{
+  "paper_metadata": {
+    "id": "1706.03762",
+    "title": "Attention Is All You Need",
+    "abstract": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
+    "published_date": "2017-06-12",
+    "pdf_url": "https://arxiv.org/pdf/1706.03762v7",
+    "authors": [
+      "Ashish Vaswani",
+      "Noam Shazeer",
+      "Niki Parmar",
+      "Jakob Uszkoreit",
+      "Llion Jones",
+      "Aidan N. Gomez",
+      "Lukasz Kaiser",
+      "Illia Polosukhin"
+    ]
+  },
+  "related_papers_count": {
+    "references": 5,
+    "citations": 5
+  },
+  "related_papers": [
+    {
+      "title": "Deep Residual Learning for Image Recognition",
+      "arxiv_id": "1512.03385",
+      "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth. On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers---8x deeper than VGG nets but still having lower complexity. An ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task. We also present analysis on CIFAR-10 with 100 and 1000 layers.\n  The depth of representations is of central importance for many visual recognition tasks. Solely due to our extremely deep representations, we obtain a 28% relative improvement on the COCO object detection dataset. Deep residual nets are foundations of our submissions to ILSVRC & COCO 2015 competitions, where we also won the 1st places on the tasks of ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation.",
+      "authors": [
+        "Kaiming He",
+        "Xiangyu Zhang",
+        "Shaoqing Ren",
+        "Jian Sun"
+      ],
+      "published_date": "2015-12-10",
+      "pdf_url": "https://arxiv.org/pdf/1512.03385v1",
+      "citation_count": 218520,
+      "year": 2015
+    },
+    {
+      "title": "Adam: A Method for Stochastic Optimization",
+      "arxiv_id": "1412.6980",
+      "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments. The method is straightforward to implement, is computationally efficient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpretations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss AdaMax, a variant of Adam based on the infinity norm.",
+      "authors": [
+        "Diederik P. Kingma",
+        "Jimmy Ba"
+      ],
+      "published_date": "2014-12-22",
+      "pdf_url": "https://arxiv.org/pdf/1412.6980v9",
+      "citation_count": 162058,
+      "year": 2014
+    },
+    {
+      "title": "Long Short-Term Memory",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [
+        "Sepp Hochreiter",
+        "J. Schmidhuber"
+      ],
+      "published_date": "1997",
+      "pdf_url": "",
+      "citation_count": 99913,
+      "year": 1997
+    },
+    {
+      "title": "Dropout: a simple way to prevent neural networks from overfitting",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [
+        "Nitish Srivastava",
+        "Geoffrey E. Hinton",
+        "A. Krizhevsky",
+        "I. Sutskever",
+        "R. Salakhutdinov"
+      ],
+      "published_date": "2014",
+      "pdf_url": "",
+      "citation_count": 42252,
+      "year": 2014
+    },
+    {
+      "title": "Rethinking the Inception Architecture for Computer Vision",
+      "arxiv_id": "1512.00567",
+      "abstract": "Convolutional networks are at the core of most state-of-the-art computer vision solutions for a wide variety of tasks. Since 2014 very deep convolutional networks started to become mainstream, yielding substantial gains in various benchmarks. Although increased model size and computational cost tend to translate to immediate quality gains for most tasks (as long as enough labeled data is provided for training), computational efficiency and low parameter count are still enabling factors for various use cases such as mobile vision and big-data scenarios. Here we explore ways to scale up networks in ways that aim at utilizing the added computation as efficiently as possible by suitably factorized convolutions and aggressive regularization. We benchmark our methods on the ILSVRC 2012 classification challenge validation set demonstrate substantial gains over the state of the art: 21.2% top-1 and 5.6% top-5 error for single frame evaluation using a network with a computational cost of 5 billion multiply-adds per inference and with using less than 25 million parameters. With an ensemble of 4 models and multi-crop evaluation, we report 3.5% top-5 error on the validation set (3.6% error on the test set) and 17.3% top-1 error on the validation set.",
+      "authors": [
+        "Christian Szegedy",
+        "Vincent Vanhoucke",
+        "Sergey Ioffe",
+        "Jonathon Shlens",
+        "Zbigniew Wojna"
+      ],
+      "published_date": "2015-12-02",
+      "pdf_url": "https://arxiv.org/pdf/1512.00567v3",
+      "citation_count": 29998,
+      "year": 2015
+    },
+    {
+      "title": "A comprehensive review of recommender systems: Transitioning from theory to practice",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [],
+      "published_date": "",
+      "pdf_url": "",
+      "citation_count": 7,
+      "year": 2026
+    },
+    {
+      "title": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [],
+      "published_date": "",
+      "pdf_url": "",
+      "citation_count": 4,
+      "year": 2026
+    },
+    {
+      "title": "DiffusionEngine: Diffusion model is scalable data engine for object detection",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [
+        "Manlin Zhang",
+        "Jie Wu",
+        "Yuxi Ren",
+        "Jiahong Yang",
+        "Ming Li",
+        "Andy J. Ma"
+      ],
+      "published_date": "2026",
+      "pdf_url": "",
+      "citation_count": 2,
+      "year": 2026
+    },
+    {
+      "title": "Conditional Generative Adversarial Network-based framework for multi-feature uncertainty modeling in energy systems",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [],
+      "published_date": "",
+      "pdf_url": "",
+      "citation_count": 2,
+      "year": 2026
+    },
+    {
+      "title": "CityVLM: Towards sustainable urban development via multi-view coordinated vision–language model",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [],
+      "published_date": "",
+      "pdf_url": "",
+      "citation_count": 2,
+      "year": 2026
+    }
+  ],
+  "top_n": 5,
+  "knowledge_graph": {
+    "entities": [
+      {
+        "name": "Attention Is All You Need",
+        "type": "AIPaper",
+        "arxiv_id": "1706.03762"
+      },
+      {
+        "name": "Deep Residual Learning for Image Recognition",
+        "type": "AIPaper",
+        "arxiv_id": "1512.03385"
+      },
+      {
+        "name": "Adam: A Method for Stochastic Optimization",
+        "type": "AIPaper",
+        "arxiv_id": "1412.6980"
+      },
+      {
+        "name": "Long Short-Term Memory",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "Dropout: a simple way to prevent neural networks from overfitting",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "Rethinking the Inception Architecture for Computer Vision",
+        "type": "AIPaper",
+        "arxiv_id": "1512.00567"
+      },
+      {
+        "name": "A comprehensive review of recommender systems: Transitioning from theory to practice",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "DiffusionEngine: Diffusion model is scalable data engine for object detection",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "Conditional Generative Adversarial Network-based framework for multi-feature uncertainty modeling in energy systems",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "CityVLM: Towards sustainable urban development via multi-view coordinated vision–language model",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "Ashish Vaswani",
+        "type": "Researcher"
+      },
+      {
+        "name": "Noam Shazeer",
+        "type": "Researcher"
+      },
+      {
+        "name": "Niki Parmar",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jakob Uszkoreit",
+        "type": "Researcher"
+      },
+      {
+        "name": "Llion Jones",
+        "type": "Researcher"
+      },
+      {
+        "name": "Aidan N. Gomez",
+        "type": "Researcher"
+      },
+      {
+        "name": "Lukasz Kaiser",
+        "type": "Researcher"
+      },
+      {
+        "name": "Illia Polosukhin",
+        "type": "Researcher"
+      },
+      {
+        "name": "Kaiming He",
+        "type": "Researcher"
+      },
+      {
+        "name": "Xiangyu Zhang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Shaoqing Ren",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jian Sun",
+        "type": "Researcher"
+      },
+      {
+        "name": "Diederik P. Kingma",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jimmy Ba",
+        "type": "Researcher"
+      },
+      {
+        "name": "Sepp Hochreiter",
+        "type": "Researcher"
+      },
+      {
+        "name": "J. Schmidhuber",
+        "type": "Researcher"
+      },
+      {
+        "name": "Nitish Srivastava",
+        "type": "Researcher"
+      },
+      {
+        "name": "Geoffrey E. Hinton",
+        "type": "Researcher"
+      },
+      {
+        "name": "A. Krizhevsky",
+        "type": "Researcher"
+      },
+      {
+        "name": "I. Sutskever",
+        "type": "Researcher"
+      },
+      {
+        "name": "R. Salakhutdinov",
+        "type": "Researcher"
+      },
+      {
+        "name": "Christian Szegedy",
+        "type": "Researcher"
+      },
+      {
+        "name": "Vincent Vanhoucke",
+        "type": "Researcher"
+      },
+      {
+        "name": "Sergey Ioffe",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jonathon Shlens",
+        "type": "Researcher"
+      },
+      {
+        "name": "Zbigniew Wojna",
+        "type": "Researcher"
+      },
+      {
+        "name": "Manlin Zhang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jie Wu",
+        "type": "Researcher"
+      },
+      {
+        "name": "Yuxi Ren",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jiahong Yang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Ming Li",
+        "type": "Researcher"
+      },
+      {
+        "name": "Andy J. Ma",
+        "type": "Researcher"
+      },
+      {
+        "name": "Transformer",
+        "type": "AIModel"
+      },
+      {
+        "name": "WMT 2014 English-to-German translation task",
+        "type": "Dataset"
+      },
+      {
+        "name": "WMT 2014 English-to-French translation task",
+        "type": "Dataset"
+      },
+      {
+        "name": "English constituency parsing",
+        "type": "Dataset"
+      },
+      {
+        "name": "BLEU",
+        "type": "Metric"
+      },
+      {
+        "name": "residual learning framework",
+        "type": "AIModel"
+      },
+      {
+        "name": "residual networks",
+        "type": "AIModel"
+      },
+      {
+        "name": "VGG nets",
+        "type": "AIModel"
+      },
+      {
+        "name": "ImageNet",
+        "type": "Dataset"
+      },
+      {
+        "name": "CIFAR-10",
+        "type": "Dataset"
+      },
+      {
+        "name": "COCO object detection dataset",
+        "type": "Dataset"
+      },
+      {
+        "name": "error",
+        "type": "Metric"
+      },
+      {
+        "name": "Adam",
+        "type": "AIModel"
+      },
+      {
+        "name": "AdaMax",
+        "type": "AIModel"
+      },
+      {
+        "name": "Dropout",
+        "type": "AIModel"
+      },
+      {
+        "name": "Inception Architecture",
+        "type": "AIModel"
+      },
+      {
+        "name": "ILSVRC 2012 classification challenge validation set",
+        "type": "Dataset"
+      },
+      {
+        "name": "top-1 error",
+        "type": "Metric"
+      },
+      {
+        "name": "top-5 error",
+        "type": "Metric"
+      },
+      {
+        "name": "CNC-VLM",
+        "type": "AIModel"
+      },
+      {
+        "name": "CNC fault detection dataset",
+        "type": "Dataset"
+      },
+      {
+        "name": "DiffusionEngine",
+        "type": "AIModel"
+      },
+      {
+        "name": "Conditional Generative Adversarial Network",
+        "type": "AIModel"
+      },
+      {
+        "name": "CityVLM",
+        "type": "AIModel"
+      }
+    ],
+    "triples": [
+      {
+        "head": "Ashish Vaswani",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Noam Shazeer",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Niki Parmar",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Jakob Uszkoreit",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Llion Jones",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Aidan N. Gomez",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Lukasz Kaiser",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Illia Polosukhin",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Kaiming He",
+        "relation": "author_of",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Xiangyu Zhang",
+        "relation": "author_of",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Shaoqing Ren",
+        "relation": "author_of",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Jian Sun",
+        "relation": "author_of",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Diederik P. Kingma",
+        "relation": "author_of",
+        "tail": "Adam: A Method for Stochastic Optimization"
+      },
+      {
+        "head": "Jimmy Ba",
+        "relation": "author_of",
+        "tail": "Adam: A Method for Stochastic Optimization"
+      },
+      {
+        "head": "Sepp Hochreiter",
+        "relation": "author_of",
+        "tail": "Long Short-Term Memory"
+      },
+      {
+        "head": "J. Schmidhuber",
+        "relation": "author_of",
+        "tail": "Long Short-Term Memory"
+      },
+      {
+        "head": "Nitish Srivastava",
+        "relation": "author_of",
+        "tail": "Dropout: a simple way to prevent neural networks from overfitting"
+      },
+      {
+        "head": "Geoffrey E. Hinton",
+        "relation": "author_of",
+        "tail": "Dropout: a simple way to prevent neural networks from overfitting"
+      },
+      {
+        "head": "A. Krizhevsky",
+        "relation": "author_of",
+        "tail": "Dropout: a simple way to prevent neural networks from overfitting"
+      },
+      {
+        "head": "I. Sutskever",
+        "relation": "author_of",
+        "tail": "Dropout: a simple way to prevent neural networks from overfitting"
+      },
+      {
+        "head": "R. Salakhutdinov",
+        "relation": "author_of",
+        "tail": "Dropout: a simple way to prevent neural networks from overfitting"
+      },
+      {
+        "head": "Christian Szegedy",
+        "relation": "author_of",
+        "tail": "Rethinking the Inception Architecture for Computer Vision"
+      },
+      {
+        "head": "Vincent Vanhoucke",
+        "relation": "author_of",
+        "tail": "Rethinking the Inception Architecture for Computer Vision"
+      },
+      {
+        "head": "Sergey Ioffe",
+        "relation": "author_of",
+        "tail": "Rethinking the Inception Architecture for Computer Vision"
+      },
+      {
+        "head": "Jonathon Shlens",
+        "relation": "author_of",
+        "tail": "Rethinking the Inception Architecture for Computer Vision"
+      },
+      {
+        "head": "Zbigniew Wojna",
+        "relation": "author_of",
+        "tail": "Rethinking the Inception Architecture for Computer Vision"
+      },
+      {
+        "head": "Manlin Zhang",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Jie Wu",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Yuxi Ren",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Jiahong Yang",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Ming Li",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Andy J. Ma",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Attention Is All You Need",
+        "relation": "cites",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Attention Is All You Need",
+        "relation": "cites",
+        "tail": "Adam: A Method for Stochastic Optimization"
+      },
+      {
+        "head": "Attention Is All You Need",
+        "relation": "cites",
+        "tail": "Long Short-Term Memory"
+      },
+      {
+        "head": "Attention Is All You Need",
+        "relation": "cites",
+        "tail": "Dropout: a simple way to prevent neural networks from overfitting"
+      },
+      {
+        "head": "Attention Is All You Need",
+        "relation": "cites",
+        "tail": "Rethinking the Inception Architecture for Computer Vision"
+      },
+      {
+        "head": "A comprehensive review of recommender systems: Transitioning from theory to practice",
+        "relation": "cites",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection",
+        "relation": "cites",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "DiffusionEngine: Diffusion model is scalable data engine for object detection",
+        "relation": "cites",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Conditional Generative Adversarial Network-based framework for multi-feature uncertainty modeling in energy systems",
+        "relation": "cites",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "CityVLM: Towards sustainable urban development via multi-view coordinated vision–language model",
+        "relation": "cites",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Attention Is All You Need",
+        "relation": "proposed_model",
+        "tail": "Transformer"
+      },
+      {
+        "head": "Transformer",
+        "relation": "evaluated_on",
+        "tail": "WMT 2014 English-to-German translation task"
+      },
+      {
+        "head": "Transformer",
+        "relation": "evaluated_on",
+        "tail": "WMT 2014 English-to-French translation task"
+      },
+      {
+        "head": "Transformer",
+        "relation": "evaluated_on",
+        "tail": "English constituency parsing"
+      },
+      {
+        "head": "Transformer",
+        "relation": "uses_metric",
+        "tail": "BLEU"
+      },
+      {
+        "head": "Deep Residual Learning for Image Recognition",
+        "relation": "proposed_model",
+        "tail": "residual learning framework"
+      },
+      {
+        "head": "Deep Residual Learning for Image Recognition",
+        "relation": "proposed_model",
+        "tail": "residual networks"
+      },
+      {
+        "head": "Deep Residual Learning for Image Recognition",
+        "relation": "baseline_model",
+        "tail": "VGG nets"
+      },
+      {
+        "head": "residual networks",
+        "relation": "evaluated_on",
+        "tail": "ImageNet"
+      },
+      {
+        "head": "residual networks",
+        "relation": "evaluated_on",
+        "tail": "CIFAR-10"
+      },
+      {
+        "head": "residual networks",
+        "relation": "evaluated_on",
+        "tail": "COCO object detection dataset"
+      },
+      {
+        "head": "residual networks",
+        "relation": "uses_metric",
+        "tail": "error"
+      },
+      {
+        "head": "Adam: A Method for Stochastic Optimization",
+        "relation": "proposed_model",
+        "tail": "Adam"
+      },
+      {
+        "head": "Adam: A Method for Stochastic Optimization",
+        "relation": "proposed_model",
+        "tail": "AdaMax"
+      },
+      {
+        "head": "Dropout: a simple way to prevent neural networks from overfitting",
+        "relation": "proposed_model",
+        "tail": "Dropout"
+      },
+      {
+        "head": "Rethinking the Inception Architecture for Computer Vision",
+        "relation": "proposed_model",
+        "tail": "Inception Architecture"
+      },
+      {
+        "head": "Rethinking the Inception Architecture for Computer Vision",
+        "relation": "evaluated_on",
+        "tail": "ILSVRC 2012 classification challenge validation set"
+      },
+      {
+        "head": "Rethinking the Inception Architecture for Computer Vision",
+        "relation": "uses_metric",
+        "tail": "top-1 error"
+      },
+      {
+        "head": "Rethinking the Inception Architecture for Computer Vision",
+        "relation": "uses_metric",
+        "tail": "top-5 error"
+      },
+      {
+        "head": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection",
+        "relation": "proposed_model",
+        "tail": "CNC-VLM"
+      },
+      {
+        "head": "CNC-VLM",
+        "relation": "evaluated_on",
+        "tail": "CNC fault detection dataset"
+      },
+      {
+        "head": "DiffusionEngine: Diffusion model is scalable data engine for object detection",
+        "relation": "proposed_model",
+        "tail": "DiffusionEngine"
+      },
+      {
+        "head": "Conditional Generative Adversarial Network-based framework for multi-feature uncertainty modeling in energy systems",
+        "relation": "proposed_model",
+        "tail": "Conditional Generative Adversarial Network"
+      },
+      {
+        "head": "CityVLM: Towards sustainable urban development via multi-view coordinated vision–language model",
+        "relation": "proposed_model",
+        "tail": "CityVLM"
+      }
+    ]
+  }
+}

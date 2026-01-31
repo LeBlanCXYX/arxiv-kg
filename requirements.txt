@@ -1,0 +1,6 @@
+# OpenKG 知识图谱项目依赖
+# 推荐 Python 3.10：python -m venv .venv && .venv\Scripts\activate (Windows) 或 source .venv/bin/activate (Linux/macOS)
+
+arxiv>=2.0.0
+openai>=1.0.0
+requests>=2.28.0
