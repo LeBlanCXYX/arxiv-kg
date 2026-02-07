@@ -1,0 +1,1658 @@
+{
+  "paper_metadata": {
+    "id": "1706.03762",
+    "title": "Attention Is All You Need",
+    "abstract": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
+    "published_date": "2017-06-12",
+    "pdf_url": "https://arxiv.org/pdf/1706.03762v7",
+    "authors": [
+      "Ashish Vaswani",
+      "Noam Shazeer",
+      "Niki Parmar",
+      "Jakob Uszkoreit",
+      "Llion Jones",
+      "Aidan N. Gomez",
+      "Lukasz Kaiser",
+      "Illia Polosukhin"
+    ]
+  },
+  "related_papers_count": {
+    "references": 3,
+    "citations": 3
+  },
+  "related_papers": [
+    {
+      "title": "Deep Residual Learning for Image Recognition",
+      "arxiv_id": "",
+      "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth. On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers---8x deeper than VGG nets but still having lower complexity. An ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task. We also present analysis on CIFAR-10 with 100 and 1000 layers.\n  The depth of representations is of central importance for many visual recognition tasks. Solely due to our extremely deep representations, we obtain a 28% relative improvement on the COCO object detection dataset. Deep residual nets are foundations of our submissions to ILSVRC & COCO 2015 competitions, where we also won the 1st places on the tasks of ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation.",
+      "authors": [
+        "Kaiming He",
+        "Xiangyu Zhang",
+        "Shaoqing Ren",
+        "Jian Sun"
+      ],
+      "published_date": "2015-12-10",
+      "pdf_url": "https://arxiv.org/pdf/1512.03385v1",
+      "citation_count": null,
+      "year": null
+    },
+    {
+      "title": "Adam: A Method for Stochastic Optimization",
+      "arxiv_id": "",
+      "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments. The method is straightforward to implement, is computationally efficient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpretations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss AdaMax, a variant of Adam based on the infinity norm.",
+      "authors": [
+        "Diederik P. Kingma",
+        "Jimmy Ba"
+      ],
+      "published_date": "2014-12-22",
+      "pdf_url": "https://arxiv.org/pdf/1412.6980v9",
+      "citation_count": null,
+      "year": null
+    },
+    {
+      "title": "Long Short-Term Memory",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [
+        "Sepp Hochreiter",
+        "J. Schmidhuber"
+      ],
+      "published_date": "1997",
+      "pdf_url": "",
+      "citation_count": 100213,
+      "year": 1997
+    },
+    {
+      "title": "A comprehensive review of recommender systems: Transitioning from theory to practice",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [
+        "Shaina Raza",
+        "Mizanur Rahman",
+        "Safiullah Kamawal",
+        "Armin Toroghi",
+        "Ananya Raval",
+        "F. Navah",
+        "Amirmohammad Kazemeini"
+      ],
+      "published_date": "2026",
+      "pdf_url": "",
+      "citation_count": 7,
+      "year": 2026
+    },
+    {
+      "title": "InstaDrive: Instance-Aware Driving World Models for Realistic and Consistent Video Generation",
+      "arxiv_id": "",
+      "abstract": "Autonomous driving relies on robust models trained on high-quality, large-scale multi-view driving videos. While world models offer a cost-effective solution for generating realistic driving videos, they struggle to maintain instance-level temporal consistency and spatial geometric fidelity. To address these challenges, we propose InstaDrive, a novel framework that enhances driving video realism through two key advancements: (1) Instance Flow Guider, which extracts and propagates instance features across frames to enforce temporal consistency, preserving instance identity over time. (2) Spatial Geometric Aligner, which improves spatial reasoning, ensures precise instance positioning, and explicitly models occlusion hierarchies. By incorporating these instance-aware mechanisms, InstaDrive achieves state-of-the-art video generation quality and enhances downstream autonomous driving tasks on the nuScenes dataset. Additionally, we utilize CARLA's autopilot to procedurally and stochastically simulate rare but safety-critical driving scenarios across diverse maps and regions, enabling rigorous safety evaluation for autonomous systems. Our project page is https://shanpoyang654.github.io/InstaDrive/page.html.",
+      "authors": [
+        "Zhuoran Yang",
+        "Xi Guo",
+        "Chenjing Ding",
+        "Chiyu Wang",
+        "Wei Wu",
+        "Yanyong Zhang"
+      ],
+      "published_date": "2026-02-03",
+      "pdf_url": "https://arxiv.org/pdf/2602.03242v1",
+      "citation_count": null,
+      "year": null
+    },
+    {
+      "title": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [
+        "Zisheng Wang",
+        "Junjie Chen",
+        "Chisen Wang",
+        "Cong Peng",
+        "Jianping Xuan",
+        "Tielin Shi",
+        "Ming J. Zuo"
+      ],
+      "published_date": "2026",
+      "pdf_url": "",
+      "citation_count": 4,
+      "year": 2026
+    },
+    {
+      "title": "ImageNet classification with deep convolutional neural networks",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [
+        "A. Krizhevsky",
+        "I. Sutskever",
+        "Geoffrey E. Hinton"
+      ],
+      "published_date": "2012",
+      "pdf_url": "",
+      "citation_count": 126487,
+      "year": 2012
+    },
+    {
+      "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+      "arxiv_id": "",
+      "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. Our main contribution is a thorough evaluation of networks of increasing depth using an architecture with very small (3x3) convolution filters, which shows that a significant improvement on the prior-art configurations can be achieved by pushing the depth to 16-19 weight layers. These findings were the basis of our ImageNet Challenge 2014 submission, where our team secured the first and the second places in the localisation and classification tracks respectively. We also show that our representations generalise well to other datasets, where they achieve state-of-the-art results. We have made our two best-performing ConvNet models publicly available to facilitate further research on the use of deep visual representations in computer vision.",
+      "authors": [
+        "Karen Simonyan",
+        "Andrew Zisserman"
+      ],
+      "published_date": "2014-09-04",
+      "pdf_url": "https://arxiv.org/pdf/1409.1556v6",
+      "citation_count": null,
+      "year": null
+    },
+    {
+      "title": "A comprehensive survey for real-world industrial surface defect detection: Challenges, approaches, and prospects",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [
+        "Yuqi Cheng",
+        "Yunkang Cao",
+        "Haiming Yao",
+        "Wei Luo",
+        "Cheng Jiang",
+        "Hui Zhang",
+        "Weiming Shen"
+      ],
+      "published_date": "2026",
+      "pdf_url": "",
+      "citation_count": 6,
+      "year": 2026
+    },
+    {
+      "title": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning",
+      "arxiv_id": null,
+      "abstract": "Federated learning (FL) has emerged as a promising solution to enable distributed learning without sharing sensitive data. However, FL is vulnerable to data poisoning attacks, where malicious clients inject malicious data during training to compromise the global model. Existing FL defenses suffer from the assumptions of independent and identically distributed (IID) model updates, asymptotic optimal error rate bounds, and strong convexity in the optimization problem. Hence, we propose a novel framework called Federated Learning Optimal Transport (FLOT) that leverages the Wasserstein barycentric technique to obtain a global model from a set of locally trained non-IID models on client devices. In addition, we introduce a loss function-based rejection (LFR) mechanism to suppress malicious updates and a dynamic weighting scheme to optimize the Wasserstein barycentric aggregation function. We provide the theoretical proof of the Byzantine resilience and convergence of FLOT to highlight its efficacy. We evaluate FLOT on four benchmark datasets: GTSRB, KBTS, CIFAR10, and EMNIST. The experimental results underscore the practical significance of FLOT as an effective defense mechanism against data poisoning attacks in FL while maintaining high accuracy and scalability. Also, we observe that FLOT serves as a robust client selection technique under no attack, which demonstrates its effectiveness.",
+      "authors": [
+        "Naveen Kumar Srinivasa",
+        "Ajeet Rao Chalamala",
+        "Kumar Singh",
+        "Ieee Krishna Mohan Senior Member",
+        "K. Naveen",
+        "Srinivasa Rao",
+        "Ajeet Kumar Singh"
+      ],
+      "published_date": "2026",
+      "pdf_url": "",
+      "citation_count": 5,
+      "year": 2026
+    },
+    {
+      "title": "DiffusionEngine: Diffusion model is scalable data engine for object detection",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [
+        "Manlin Zhang",
+        "Jie Wu",
+        "Yuxi Ren",
+        "Jiahong Yang",
+        "Ming Li",
+        "Andy J. Ma"
+      ],
+      "published_date": "2026",
+      "pdf_url": "",
+      "citation_count": 2,
+      "year": 2026
+    },
+    {
+      "title": "Auto-Encoding Variational Bayes",
+      "arxiv_id": "",
+      "abstract": "How can we perform efficient inference and learning in directed probabilistic models, in the presence of continuous latent variables with intractable posterior distributions, and large datasets? We introduce a stochastic variational inference and learning algorithm that scales to large datasets and, under some mild differentiability conditions, even works in the intractable case. Our contributions are two-fold. First, we show that a reparameterization of the variational lower bound yields a lower bound estimator that can be straightforwardly optimized using standard stochastic gradient methods. Second, we show that for i.i.d. datasets with continuous latent variables per datapoint, posterior inference can be made especially efficient by fitting an approximate inference model (also called a recognition model) to the intractable posterior using the proposed lower bound estimator. Theoretical advantages are reflected in experimental results.",
+      "authors": [
+        "Diederik P Kingma",
+        "Max Welling"
+      ],
+      "published_date": "2013-12-20",
+      "pdf_url": "https://arxiv.org/pdf/1312.6114v11",
+      "citation_count": null,
+      "year": null
+    },
+    {
+      "title": "Supporting Online Material for Reducing the Dimensionality of Data with Neural Networks",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [
+        "Geoffrey E. Hinton",
+        "R. Salakhutdinov"
+      ],
+      "published_date": "2006",
+      "pdf_url": "",
+      "citation_count": 11470,
+      "year": 2006
+    },
+    {
+      "title": "Weakly Supervised Image Dehazing via Physics-Based Decomposition",
+      "arxiv_id": null,
+      "abstract": "",
+      "authors": [],
+      "published_date": "",
+      "pdf_url": "",
+      "citation_count": 10,
+      "year": 2026
+    },
+    {
+      "title": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer",
+      "arxiv_id": null,
+      "abstract": "As Adam optimizer’s learning rate decay hyperparameter has recently been deprecated, this journal article focuses not only on providing an alternate optimizer but also on comparing the performance of the said optimizer, AdamW, with the Adam optimizer using a face mask detection model. This study experiments with different weight decay values and finds that a weight decay of 0.00009 with the AdamW optimizer consistently achieves a 98% accuracy rate. Aside from that, this study also discusses the differences between Adam with L2-regularization and AdamW on how the weight decay is decoupled from the Adam optimizer’s gradient-based update that impacts the performance of AdamW. Overall, the study provides insights to those new to AdamW and looking for a starting point in optimizing deep learning models.",
+      "authors": [
+        "Leong Kah Meng",
+        "Ho Hooi Yi",
+        "Ng Bo Wei",
+        "Lim Jia Xin",
+        "Zailan Arabee Abdul Salam"
+      ],
+      "published_date": "2026",
+      "pdf_url": "",
+      "citation_count": 8,
+      "year": 2026
+    },
+    {
+      "title": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models",
+      "arxiv_id": "",
+      "abstract": "While Mixture-of-Experts (MoE) scales capacity via conditional computation, Transformers lack a native primitive for knowledge lookup, forcing them to inefficiently simulate retrieval through computation. To address this, we introduce conditional memory as a complementary sparsity axis, instantiated via Engram, a module that modernizes classic $N$-gram embedding for O(1) lookup. By formulating the Sparsity Allocation problem, we uncover a U-shaped scaling law that optimizes the trade-off between neural computation (MoE) and static memory (Engram). Guided by this law, we scale Engram to 27B parameters, achieving superior performance over a strictly iso-parameter and iso-FLOPs MoE baseline. Most notably, while the memory module is expected to aid knowledge retrieval (e.g., MMLU +3.4; CMMLU +4.0), we observe even larger gains in general reasoning (e.g., BBH +5.0; ARC-Challenge +3.7) and code/math domains~(HumanEval +3.0; MATH +2.4). Mechanistic analyses reveal that Engram relieves the backbone's early layers from static reconstruction, effectively deepening the network for complex reasoning. Furthermore, by delegating local dependencies to lookups, it frees up attention capacity for global context, substantially boosting long-context retrieval (e.g., Multi-Query NIAH: 84.2 to 97.0). Finally, Engram establishes infrastructure-aware efficiency: its deterministic addressing enables runtime prefetching from host memory, incurring negligible overhead. We envision conditional memory as an indispensable modeling primitive for next-generation sparse models.",
+      "authors": [
+        "Xin Cheng",
+        "Wangding Zeng",
+        "Damai Dai",
+        "Qinyu Chen",
+        "Bingxuan Wang",
+        "Zhenda Xie",
+        "Kezhao Huang",
+        "Xingkai Yu",
+        "Zhewen Hao",
+        "Yukun Li",
+        "Han Zhang",
+        "Huishuai Zhang",
+        "Dongyan Zhao",
+        "Wenfeng Liang"
+      ],
+      "published_date": "2026-01-12",
+      "pdf_url": "https://arxiv.org/pdf/2601.07372v1",
+      "citation_count": null,
+      "year": null
+    }
+  ],
+  "top_k": 3,
+  "depth": 2,
+  "knowledge_graph": {
+    "entities": [
+      {
+        "name": "Attention Is All You Need",
+        "type": "AIPaper",
+        "arxiv_id": "1706.03762"
+      },
+      {
+        "name": "Deep Residual Learning for Image Recognition",
+        "type": "AIPaper",
+        "arxiv_id": "1512.03385"
+      },
+      {
+        "name": "Adam: A Method for Stochastic Optimization",
+        "type": "AIPaper",
+        "arxiv_id": "1412.6980"
+      },
+      {
+        "name": "Long Short-Term Memory",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "A comprehensive review of recommender systems: Transitioning from theory to practice",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "InstaDrive: Instance-Aware Driving World Models for Realistic and Consistent Video Generation",
+        "type": "AIPaper",
+        "arxiv_id": "2602.03242"
+      },
+      {
+        "name": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "ImageNet classification with deep convolutional neural networks",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+        "type": "AIPaper",
+        "arxiv_id": "1409.1556"
+      },
+      {
+        "name": "A comprehensive survey for real-world industrial surface defect detection: Challenges, approaches, and prospects",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "DiffusionEngine: Diffusion model is scalable data engine for object detection",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "Auto-Encoding Variational Bayes",
+        "type": "AIPaper",
+        "arxiv_id": "1312.6114"
+      },
+      {
+        "name": "Supporting Online Material for Reducing the Dimensionality of Data with Neural Networks",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "Weakly Supervised Image Dehazing via Physics-Based Decomposition",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer",
+        "type": "AIPaper",
+        "arxiv_id": ""
+      },
+      {
+        "name": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models",
+        "type": "AIPaper",
+        "arxiv_id": "2601.07372"
+      },
+      {
+        "name": "Ashish Vaswani",
+        "type": "Researcher"
+      },
+      {
+        "name": "Noam Shazeer",
+        "type": "Researcher"
+      },
+      {
+        "name": "Niki Parmar",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jakob Uszkoreit",
+        "type": "Researcher"
+      },
+      {
+        "name": "Llion Jones",
+        "type": "Researcher"
+      },
+      {
+        "name": "Aidan N. Gomez",
+        "type": "Researcher"
+      },
+      {
+        "name": "Lukasz Kaiser",
+        "type": "Researcher"
+      },
+      {
+        "name": "Illia Polosukhin",
+        "type": "Researcher"
+      },
+      {
+        "name": "Kaiming He",
+        "type": "Researcher"
+      },
+      {
+        "name": "Xiangyu Zhang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Shaoqing Ren",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jian Sun",
+        "type": "Researcher"
+      },
+      {
+        "name": "Diederik P. Kingma",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jimmy Ba",
+        "type": "Researcher"
+      },
+      {
+        "name": "Sepp Hochreiter",
+        "type": "Researcher"
+      },
+      {
+        "name": "J. Schmidhuber",
+        "type": "Researcher"
+      },
+      {
+        "name": "Shaina Raza",
+        "type": "Researcher"
+      },
+      {
+        "name": "Mizanur Rahman",
+        "type": "Researcher"
+      },
+      {
+        "name": "Safiullah Kamawal",
+        "type": "Researcher"
+      },
+      {
+        "name": "Armin Toroghi",
+        "type": "Researcher"
+      },
+      {
+        "name": "Ananya Raval",
+        "type": "Researcher"
+      },
+      {
+        "name": "F. Navah",
+        "type": "Researcher"
+      },
+      {
+        "name": "Amirmohammad Kazemeini",
+        "type": "Researcher"
+      },
+      {
+        "name": "Zhuoran Yang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Xi Guo",
+        "type": "Researcher"
+      },
+      {
+        "name": "Chenjing Ding",
+        "type": "Researcher"
+      },
+      {
+        "name": "Chiyu Wang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Wei Wu",
+        "type": "Researcher"
+      },
+      {
+        "name": "Yanyong Zhang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Zisheng Wang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Junjie Chen",
+        "type": "Researcher"
+      },
+      {
+        "name": "Chisen Wang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Cong Peng",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jianping Xuan",
+        "type": "Researcher"
+      },
+      {
+        "name": "Tielin Shi",
+        "type": "Researcher"
+      },
+      {
+        "name": "Ming J. Zuo",
+        "type": "Researcher"
+      },
+      {
+        "name": "A. Krizhevsky",
+        "type": "Researcher"
+      },
+      {
+        "name": "I. Sutskever",
+        "type": "Researcher"
+      },
+      {
+        "name": "Geoffrey E. Hinton",
+        "type": "Researcher"
+      },
+      {
+        "name": "Karen Simonyan",
+        "type": "Researcher"
+      },
+      {
+        "name": "Andrew Zisserman",
+        "type": "Researcher"
+      },
+      {
+        "name": "Yuqi Cheng",
+        "type": "Researcher"
+      },
+      {
+        "name": "Yunkang Cao",
+        "type": "Researcher"
+      },
+      {
+        "name": "Haiming Yao",
+        "type": "Researcher"
+      },
+      {
+        "name": "Wei Luo",
+        "type": "Researcher"
+      },
+      {
+        "name": "Cheng Jiang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Hui Zhang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Weiming Shen",
+        "type": "Researcher"
+      },
+      {
+        "name": "Naveen Kumar Srinivasa",
+        "type": "Researcher"
+      },
+      {
+        "name": "Ajeet Rao Chalamala",
+        "type": "Researcher"
+      },
+      {
+        "name": "Kumar Singh",
+        "type": "Researcher"
+      },
+      {
+        "name": "Ieee Krishna Mohan Senior Member",
+        "type": "Researcher"
+      },
+      {
+        "name": "K. Naveen",
+        "type": "Researcher"
+      },
+      {
+        "name": "Srinivasa Rao",
+        "type": "Researcher"
+      },
+      {
+        "name": "Ajeet Kumar Singh",
+        "type": "Researcher"
+      },
+      {
+        "name": "Manlin Zhang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jie Wu",
+        "type": "Researcher"
+      },
+      {
+        "name": "Yuxi Ren",
+        "type": "Researcher"
+      },
+      {
+        "name": "Jiahong Yang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Ming Li",
+        "type": "Researcher"
+      },
+      {
+        "name": "Andy J. Ma",
+        "type": "Researcher"
+      },
+      {
+        "name": "Diederik P Kingma",
+        "type": "Researcher"
+      },
+      {
+        "name": "Max Welling",
+        "type": "Researcher"
+      },
+      {
+        "name": "R. Salakhutdinov",
+        "type": "Researcher"
+      },
+      {
+        "name": "Leong Kah Meng",
+        "type": "Researcher"
+      },
+      {
+        "name": "Ho Hooi Yi",
+        "type": "Researcher"
+      },
+      {
+        "name": "Ng Bo Wei",
+        "type": "Researcher"
+      },
+      {
+        "name": "Lim Jia Xin",
+        "type": "Researcher"
+      },
+      {
+        "name": "Zailan Arabee Abdul Salam",
+        "type": "Researcher"
+      },
+      {
+        "name": "Xin Cheng",
+        "type": "Researcher"
+      },
+      {
+        "name": "Wangding Zeng",
+        "type": "Researcher"
+      },
+      {
+        "name": "Damai Dai",
+        "type": "Researcher"
+      },
+      {
+        "name": "Qinyu Chen",
+        "type": "Researcher"
+      },
+      {
+        "name": "Bingxuan Wang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Zhenda Xie",
+        "type": "Researcher"
+      },
+      {
+        "name": "Kezhao Huang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Xingkai Yu",
+        "type": "Researcher"
+      },
+      {
+        "name": "Zhewen Hao",
+        "type": "Researcher"
+      },
+      {
+        "name": "Yukun Li",
+        "type": "Researcher"
+      },
+      {
+        "name": "Han Zhang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Huishuai Zhang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Dongyan Zhao",
+        "type": "Researcher"
+      },
+      {
+        "name": "Wenfeng Liang",
+        "type": "Researcher"
+      },
+      {
+        "name": "Transformer",
+        "type": "AIModel"
+      },
+      {
+        "name": "WMT 2014 English-to-German translation task",
+        "type": "Dataset"
+      },
+      {
+        "name": "WMT 2014 English-to-French translation task",
+        "type": "Dataset"
+      },
+      {
+        "name": "BLEU",
+        "type": "Metric"
+      },
+      {
+        "name": "residual learning framework",
+        "type": "AIModel"
+      },
+      {
+        "name": "residual networks",
+        "type": "AIModel"
+      },
+      {
+        "name": "VGG nets",
+        "type": "AIModel"
+      },
+      {
+        "name": "ImageNet",
+        "type": "Dataset"
+      },
+      {
+        "name": "CIFAR-10",
+        "type": "Dataset"
+      },
+      {
+        "name": "COCO object detection dataset",
+        "type": "Dataset"
+      },
+      {
+        "name": "error",
+        "type": "Metric"
+      },
+      {
+        "name": "Adam",
+        "type": "AIModel"
+      },
+      {
+        "name": "AdaMax",
+        "type": "AIModel"
+      },
+      {
+        "name": "InstaDrive",
+        "type": "AIModel"
+      },
+      {
+        "name": "nuScenes",
+        "type": "Dataset"
+      },
+      {
+        "name": "video generation quality",
+        "type": "Metric"
+      },
+      {
+        "name": "CNC-VLM",
+        "type": "AIModel"
+      },
+      {
+        "name": "CNC fault detection dataset",
+        "type": "Dataset"
+      },
+      {
+        "name": "deep convolutional neural networks",
+        "type": "AIModel"
+      },
+      {
+        "name": "ConvNet models",
+        "type": "AIModel"
+      },
+      {
+        "name": "ImageNet Challenge 2014",
+        "type": "Dataset"
+      },
+      {
+        "name": "accuracy",
+        "type": "Metric"
+      },
+      {
+        "name": "Federated Learning Optimal Transport (FLOT)",
+        "type": "AIModel"
+      },
+      {
+        "name": "GTSRB",
+        "type": "Dataset"
+      },
+      {
+        "name": "KBTS",
+        "type": "Dataset"
+      },
+      {
+        "name": "CIFAR10",
+        "type": "Dataset"
+      },
+      {
+        "name": "EMNIST",
+        "type": "Dataset"
+      },
+      {
+        "name": "scalability",
+        "type": "Metric"
+      },
+      {
+        "name": "DiffusionEngine",
+        "type": "AIModel"
+      },
+      {
+        "name": "stochastic variational inference and learning algorithm",
+        "type": "AIModel"
+      },
+      {
+        "name": "i.i.d. datasets",
+        "type": "Dataset"
+      },
+      {
+        "name": "variational lower bound",
+        "type": "Metric"
+      },
+      {
+        "name": "AdamW",
+        "type": "AIModel"
+      },
+      {
+        "name": "face mask detection model",
+        "type": "AIModel"
+      },
+      {
+        "name": "Engram",
+        "type": "AIModel"
+      },
+      {
+        "name": "Mixture-of-Experts (MoE)",
+        "type": "AIModel"
+      },
+      {
+        "name": "MMLU",
+        "type": "Dataset"
+      },
+      {
+        "name": "CMMLU",
+        "type": "Dataset"
+      },
+      {
+        "name": "BBH",
+        "type": "Dataset"
+      },
+      {
+        "name": "ARC-Challenge",
+        "type": "Dataset"
+      },
+      {
+        "name": "HumanEval",
+        "type": "Dataset"
+      },
+      {
+        "name": "MATH",
+        "type": "Dataset"
+      },
+      {
+        "name": "Multi-Query NIAH",
+        "type": "Dataset"
+      }
+    ],
+    "triples": [
+      {
+        "head": "Ashish Vaswani",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Noam Shazeer",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Niki Parmar",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Jakob Uszkoreit",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Llion Jones",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Aidan N. Gomez",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Lukasz Kaiser",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Illia Polosukhin",
+        "relation": "author_of",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Kaiming He",
+        "relation": "author_of",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Xiangyu Zhang",
+        "relation": "author_of",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Shaoqing Ren",
+        "relation": "author_of",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Jian Sun",
+        "relation": "author_of",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Diederik P. Kingma",
+        "relation": "author_of",
+        "tail": "Adam: A Method for Stochastic Optimization"
+      },
+      {
+        "head": "Jimmy Ba",
+        "relation": "author_of",
+        "tail": "Adam: A Method for Stochastic Optimization"
+      },
+      {
+        "head": "Sepp Hochreiter",
+        "relation": "author_of",
+        "tail": "Long Short-Term Memory"
+      },
+      {
+        "head": "J. Schmidhuber",
+        "relation": "author_of",
+        "tail": "Long Short-Term Memory"
+      },
+      {
+        "head": "Shaina Raza",
+        "relation": "author_of",
+        "tail": "A comprehensive review of recommender systems: Transitioning from theory to practice"
+      },
+      {
+        "head": "Mizanur Rahman",
+        "relation": "author_of",
+        "tail": "A comprehensive review of recommender systems: Transitioning from theory to practice"
+      },
+      {
+        "head": "Safiullah Kamawal",
+        "relation": "author_of",
+        "tail": "A comprehensive review of recommender systems: Transitioning from theory to practice"
+      },
+      {
+        "head": "Armin Toroghi",
+        "relation": "author_of",
+        "tail": "A comprehensive review of recommender systems: Transitioning from theory to practice"
+      },
+      {
+        "head": "Ananya Raval",
+        "relation": "author_of",
+        "tail": "A comprehensive review of recommender systems: Transitioning from theory to practice"
+      },
+      {
+        "head": "F. Navah",
+        "relation": "author_of",
+        "tail": "A comprehensive review of recommender systems: Transitioning from theory to practice"
+      },
+      {
+        "head": "Amirmohammad Kazemeini",
+        "relation": "author_of",
+        "tail": "A comprehensive review of recommender systems: Transitioning from theory to practice"
+      },
+      {
+        "head": "Zhuoran Yang",
+        "relation": "author_of",
+        "tail": "InstaDrive: Instance-Aware Driving World Models for Realistic and Consistent Video Generation"
+      },
+      {
+        "head": "Xi Guo",
+        "relation": "author_of",
+        "tail": "InstaDrive: Instance-Aware Driving World Models for Realistic and Consistent Video Generation"
+      },
+      {
+        "head": "Chenjing Ding",
+        "relation": "author_of",
+        "tail": "InstaDrive: Instance-Aware Driving World Models for Realistic and Consistent Video Generation"
+      },
+      {
+        "head": "Chiyu Wang",
+        "relation": "author_of",
+        "tail": "InstaDrive: Instance-Aware Driving World Models for Realistic and Consistent Video Generation"
+      },
+      {
+        "head": "Wei Wu",
+        "relation": "author_of",
+        "tail": "InstaDrive: Instance-Aware Driving World Models for Realistic and Consistent Video Generation"
+      },
+      {
+        "head": "Yanyong Zhang",
+        "relation": "author_of",
+        "tail": "InstaDrive: Instance-Aware Driving World Models for Realistic and Consistent Video Generation"
+      },
+      {
+        "head": "Zisheng Wang",
+        "relation": "author_of",
+        "tail": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection"
+      },
+      {
+        "head": "Junjie Chen",
+        "relation": "author_of",
+        "tail": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection"
+      },
+      {
+        "head": "Chisen Wang",
+        "relation": "author_of",
+        "tail": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection"
+      },
+      {
+        "head": "Cong Peng",
+        "relation": "author_of",
+        "tail": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection"
+      },
+      {
+        "head": "Jianping Xuan",
+        "relation": "author_of",
+        "tail": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection"
+      },
+      {
+        "head": "Tielin Shi",
+        "relation": "author_of",
+        "tail": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection"
+      },
+      {
+        "head": "Ming J. Zuo",
+        "relation": "author_of",
+        "tail": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection"
+      },
+      {
+        "head": "A. Krizhevsky",
+        "relation": "author_of",
+        "tail": "ImageNet classification with deep convolutional neural networks"
+      },
+      {
+        "head": "I. Sutskever",
+        "relation": "author_of",
+        "tail": "ImageNet classification with deep convolutional neural networks"
+      },
+      {
+        "head": "Geoffrey E. Hinton",
+        "relation": "author_of",
+        "tail": "ImageNet classification with deep convolutional neural networks"
+      },
+      {
+        "head": "Karen Simonyan",
+        "relation": "author_of",
+        "tail": "Very Deep Convolutional Networks for Large-Scale Image Recognition"
+      },
+      {
+        "head": "Andrew Zisserman",
+        "relation": "author_of",
+        "tail": "Very Deep Convolutional Networks for Large-Scale Image Recognition"
+      },
+      {
+        "head": "Yuqi Cheng",
+        "relation": "author_of",
+        "tail": "A comprehensive survey for real-world industrial surface defect detection: Challenges, approaches, and prospects"
+      },
+      {
+        "head": "Yunkang Cao",
+        "relation": "author_of",
+        "tail": "A comprehensive survey for real-world industrial surface defect detection: Challenges, approaches, and prospects"
+      },
+      {
+        "head": "Haiming Yao",
+        "relation": "author_of",
+        "tail": "A comprehensive survey for real-world industrial surface defect detection: Challenges, approaches, and prospects"
+      },
+      {
+        "head": "Wei Luo",
+        "relation": "author_of",
+        "tail": "A comprehensive survey for real-world industrial surface defect detection: Challenges, approaches, and prospects"
+      },
+      {
+        "head": "Cheng Jiang",
+        "relation": "author_of",
+        "tail": "A comprehensive survey for real-world industrial surface defect detection: Challenges, approaches, and prospects"
+      },
+      {
+        "head": "Hui Zhang",
+        "relation": "author_of",
+        "tail": "A comprehensive survey for real-world industrial surface defect detection: Challenges, approaches, and prospects"
+      },
+      {
+        "head": "Weiming Shen",
+        "relation": "author_of",
+        "tail": "A comprehensive survey for real-world industrial surface defect detection: Challenges, approaches, and prospects"
+      },
+      {
+        "head": "Naveen Kumar Srinivasa",
+        "relation": "author_of",
+        "tail": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning"
+      },
+      {
+        "head": "Ajeet Rao Chalamala",
+        "relation": "author_of",
+        "tail": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning"
+      },
+      {
+        "head": "Kumar Singh",
+        "relation": "author_of",
+        "tail": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning"
+      },
+      {
+        "head": "Ieee Krishna Mohan Senior Member",
+        "relation": "author_of",
+        "tail": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning"
+      },
+      {
+        "head": "K. Naveen",
+        "relation": "author_of",
+        "tail": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning"
+      },
+      {
+        "head": "Srinivasa Rao",
+        "relation": "author_of",
+        "tail": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning"
+      },
+      {
+        "head": "Ajeet Kumar Singh",
+        "relation": "author_of",
+        "tail": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning"
+      },
+      {
+        "head": "Manlin Zhang",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Jie Wu",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Yuxi Ren",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Jiahong Yang",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Ming Li",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Andy J. Ma",
+        "relation": "author_of",
+        "tail": "DiffusionEngine: Diffusion model is scalable data engine for object detection"
+      },
+      {
+        "head": "Diederik P Kingma",
+        "relation": "author_of",
+        "tail": "Auto-Encoding Variational Bayes"
+      },
+      {
+        "head": "Max Welling",
+        "relation": "author_of",
+        "tail": "Auto-Encoding Variational Bayes"
+      },
+      {
+        "head": "Geoffrey E. Hinton",
+        "relation": "author_of",
+        "tail": "Supporting Online Material for Reducing the Dimensionality of Data with Neural Networks"
+      },
+      {
+        "head": "R. Salakhutdinov",
+        "relation": "author_of",
+        "tail": "Supporting Online Material for Reducing the Dimensionality of Data with Neural Networks"
+      },
+      {
+        "head": "Leong Kah Meng",
+        "relation": "author_of",
+        "tail": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer"
+      },
+      {
+        "head": "Ho Hooi Yi",
+        "relation": "author_of",
+        "tail": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer"
+      },
+      {
+        "head": "Ng Bo Wei",
+        "relation": "author_of",
+        "tail": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer"
+      },
+      {
+        "head": "Lim Jia Xin",
+        "relation": "author_of",
+        "tail": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer"
+      },
+      {
+        "head": "Zailan Arabee Abdul Salam",
+        "relation": "author_of",
+        "tail": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer"
+      },
+      {
+        "head": "Xin Cheng",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Wangding Zeng",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Damai Dai",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Qinyu Chen",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Bingxuan Wang",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Zhenda Xie",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Kezhao Huang",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Xingkai Yu",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Zhewen Hao",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Yukun Li",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Han Zhang",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Huishuai Zhang",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Dongyan Zhao",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Wenfeng Liang",
+        "relation": "author_of",
+        "tail": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"
+      },
+      {
+        "head": "Attention Is All You Need",
+        "relation": "cites",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Attention Is All You Need",
+        "relation": "cites",
+        "tail": "Adam: A Method for Stochastic Optimization"
+      },
+      {
+        "head": "Attention Is All You Need",
+        "relation": "cites",
+        "tail": "Long Short-Term Memory"
+      },
+      {
+        "head": "A comprehensive review of recommender systems: Transitioning from theory to practice",
+        "relation": "cites",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "InstaDrive: Instance-Aware Driving World Models for Realistic and Consistent Video Generation",
+        "relation": "cites",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection",
+        "relation": "cites",
+        "tail": "Attention Is All You Need"
+      },
+      {
+        "head": "Deep Residual Learning for Image Recognition",
+        "relation": "cites",
+        "tail": "ImageNet classification with deep convolutional neural networks"
+      },
+      {
+        "head": "Deep Residual Learning for Image Recognition",
+        "relation": "cites",
+        "tail": "Very Deep Convolutional Networks for Large-Scale Image Recognition"
+      },
+      {
+        "head": "Deep Residual Learning for Image Recognition",
+        "relation": "cites",
+        "tail": "Long Short-Term Memory"
+      },
+      {
+        "head": "A comprehensive survey for real-world industrial surface defect detection: Challenges, approaches, and prospects",
+        "relation": "cites",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning",
+        "relation": "cites",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "DiffusionEngine: Diffusion model is scalable data engine for object detection",
+        "relation": "cites",
+        "tail": "Deep Residual Learning for Image Recognition"
+      },
+      {
+        "head": "Adam: A Method for Stochastic Optimization",
+        "relation": "cites",
+        "tail": "ImageNet classification with deep convolutional neural networks"
+      },
+      {
+        "head": "Adam: A Method for Stochastic Optimization",
+        "relation": "cites",
+        "tail": "Auto-Encoding Variational Bayes"
+      },
+      {
+        "head": "Adam: A Method for Stochastic Optimization",
+        "relation": "cites",
+        "tail": "Supporting Online Material for Reducing the Dimensionality of Data with Neural Networks"
+      },
+      {
+        "head": "Weakly Supervised Image Dehazing via Physics-Based Decomposition",
+        "relation": "cites",
+        "tail": "Adam: A Method for Stochastic Optimization"
+      },
+      {
+        "head": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer",
+        "relation": "cites",
+        "tail": "Adam: A Method for Stochastic Optimization"
+      },
+      {
+        "head": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models",
+        "relation": "cites",
+        "tail": "Adam: A Method for Stochastic Optimization"
+      },
+      {
+        "head": "Attention Is All You Need",
+        "relation": "proposed_model",
+        "tail": "Transformer"
+      },
+      {
+        "head": "Transformer",
+        "relation": "evaluated_on",
+        "tail": "WMT 2014 English-to-German translation task"
+      },
+      {
+        "head": "Transformer",
+        "relation": "evaluated_on",
+        "tail": "WMT 2014 English-to-French translation task"
+      },
+      {
+        "head": "Transformer",
+        "relation": "uses_metric",
+        "tail": "BLEU"
+      },
+      {
+        "head": "Deep Residual Learning for Image Recognition",
+        "relation": "proposed_model",
+        "tail": "residual learning framework"
+      },
+      {
+        "head": "Deep Residual Learning for Image Recognition",
+        "relation": "proposed_model",
+        "tail": "residual networks"
+      },
+      {
+        "head": "Deep Residual Learning for Image Recognition",
+        "relation": "baseline_model",
+        "tail": "VGG nets"
+      },
+      {
+        "head": "residual networks",
+        "relation": "evaluated_on",
+        "tail": "ImageNet"
+      },
+      {
+        "head": "residual networks",
+        "relation": "evaluated_on",
+        "tail": "CIFAR-10"
+      },
+      {
+        "head": "residual networks",
+        "relation": "evaluated_on",
+        "tail": "COCO object detection dataset"
+      },
+      {
+        "head": "residual networks",
+        "relation": "uses_metric",
+        "tail": "error"
+      },
+      {
+        "head": "Adam: A Method for Stochastic Optimization",
+        "relation": "proposed_model",
+        "tail": "Adam"
+      },
+      {
+        "head": "Adam: A Method for Stochastic Optimization",
+        "relation": "proposed_model",
+        "tail": "AdaMax"
+      },
+      {
+        "head": "Long Short-Term Memory",
+        "relation": "proposed_model",
+        "tail": "Long Short-Term Memory"
+      },
+      {
+        "head": "InstaDrive: Instance-Aware Driving World Models for Realistic and Consistent Video Generation",
+        "relation": "proposed_model",
+        "tail": "InstaDrive"
+      },
+      {
+        "head": "InstaDrive",
+        "relation": "evaluated_on",
+        "tail": "nuScenes"
+      },
+      {
+        "head": "InstaDrive",
+        "relation": "uses_metric",
+        "tail": "video generation quality"
+      },
+      {
+        "head": "CNC-VLM: An RLHF-optimized industrial large vision-language model with multimodal learning for imbalanced CNC fault detection",
+        "relation": "proposed_model",
+        "tail": "CNC-VLM"
+      },
+      {
+        "head": "CNC-VLM",
+        "relation": "evaluated_on",
+        "tail": "CNC fault detection dataset"
+      },
+      {
+        "head": "ImageNet classification with deep convolutional neural networks",
+        "relation": "proposed_model",
+        "tail": "deep convolutional neural networks"
+      },
+      {
+        "head": "ImageNet classification with deep convolutional neural networks",
+        "relation": "evaluated_on",
+        "tail": "ImageNet"
+      },
+      {
+        "head": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+        "relation": "proposed_model",
+        "tail": "ConvNet models"
+      },
+      {
+        "head": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+        "relation": "evaluated_on",
+        "tail": "ImageNet Challenge 2014"
+      },
+      {
+        "head": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+        "relation": "uses_metric",
+        "tail": "accuracy"
+      },
+      {
+        "head": "Optimal Transport Barycentric Aggregation for Byzantine-Resilient Federated Learning",
+        "relation": "proposed_model",
+        "tail": "Federated Learning Optimal Transport (FLOT)"
+      },
+      {
+        "head": "Federated Learning Optimal Transport (FLOT)",
+        "relation": "evaluated_on",
+        "tail": "GTSRB"
+      },
+      {
+        "head": "Federated Learning Optimal Transport (FLOT)",
+        "relation": "evaluated_on",
+        "tail": "KBTS"
+      },
+      {
+        "head": "Federated Learning Optimal Transport (FLOT)",
+        "relation": "evaluated_on",
+        "tail": "CIFAR10"
+      },
+      {
+        "head": "Federated Learning Optimal Transport (FLOT)",
+        "relation": "evaluated_on",
+        "tail": "EMNIST"
+      },
+      {
+        "head": "Federated Learning Optimal Transport (FLOT)",
+        "relation": "uses_metric",
+        "tail": "accuracy"
+      },
+      {
+        "head": "Federated Learning Optimal Transport (FLOT)",
+        "relation": "uses_metric",
+        "tail": "scalability"
+      },
+      {
+        "head": "DiffusionEngine: Diffusion model is scalable data engine for object detection",
+        "relation": "proposed_model",
+        "tail": "DiffusionEngine"
+      },
+      {
+        "head": "Auto-Encoding Variational Bayes",
+        "relation": "proposed_model",
+        "tail": "stochastic variational inference and learning algorithm"
+      },
+      {
+        "head": "stochastic variational inference and learning algorithm",
+        "relation": "evaluated_on",
+        "tail": "i.i.d. datasets"
+      },
+      {
+        "head": "stochastic variational inference and learning algorithm",
+        "relation": "uses_metric",
+        "tail": "variational lower bound"
+      },
+      {
+        "head": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer",
+        "relation": "proposed_model",
+        "tail": "AdamW"
+      },
+      {
+        "head": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer",
+        "relation": "baseline_model",
+        "tail": "Adam"
+      },
+      {
+        "head": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer",
+        "relation": "evaluated_on",
+        "tail": "face mask detection model"
+      },
+      {
+        "head": "A Machine Learning Approach for Face Mask Detection System with AdamW Optimizer",
+        "relation": "uses_metric",
+        "tail": "accuracy"
+      },
+      {
+        "head": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models",
+        "relation": "proposed_model",
+        "tail": "Engram"
+      },
+      {
+        "head": "Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models",
+        "relation": "baseline_model",
+        "tail": "Mixture-of-Experts (MoE)"
+      },
+      {
+        "head": "Engram",
+        "relation": "evaluated_on",
+        "tail": "MMLU"
+      },
+      {
+        "head": "Engram",
+        "relation": "evaluated_on",
+        "tail": "CMMLU"
+      },
+      {
+        "head": "Engram",
+        "relation": "evaluated_on",
+        "tail": "BBH"
+      },
+      {
+        "head": "Engram",
+        "relation": "evaluated_on",
+        "tail": "ARC-Challenge"
+      },
+      {
+        "head": "Engram",
+        "relation": "evaluated_on",
+        "tail": "HumanEval"
+      },
+      {
+        "head": "Engram",
+        "relation": "evaluated_on",
+        "tail": "MATH"
+      },
+      {
+        "head": "Engram",
+        "relation": "evaluated_on",
+        "tail": "Multi-Query NIAH"
+      },
+      {
+        "head": "Engram",
+        "relation": "uses_metric",
+        "tail": "MMLU"
+      },
+      {
+        "head": "Engram",
+        "relation": "uses_metric",
+        "tail": "CMMLU"
+      },
+      {
+        "head": "Engram",
+        "relation": "uses_metric",
+        "tail": "BBH"
+      },
+      {
+        "head": "Engram",
+        "relation": "uses_metric",
+        "tail": "ARC-Challenge"
+      },
+      {
+        "head": "Engram",
+        "relation": "uses_metric",
+        "tail": "HumanEval"
+      },
+      {
+        "head": "Engram",
+        "relation": "uses_metric",
+        "tail": "MATH"
+      },
+      {
+        "head": "Engram",
+        "relation": "uses_metric",
+        "tail": "Multi-Query NIAH"
+      }
+    ]
+  }
+}

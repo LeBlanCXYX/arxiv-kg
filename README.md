@@ -156,3 +156,9 @@ python app_qa.py top_citations_kg_1706.03762.json
 
 - **推荐 Python 版本**  
   建议使用 **Python 3.10** 创建虚拟环境并安装 `requirements.txt`，以减少兼容性问题。
+
+- **打开 HTML 后图表不显示（CDN 超时 / Tracking Prevention）**  
+  生成器会优先使用与 HTML **同目录**下的 `echarts.min.js`；若不存在则使用 unpkg CDN。若网络无法访问 CDN，请将 [echarts.min.js](https://unpkg.com/echarts@5.4.3/dist/echarts.min.js) 下载到与 `.html` 同一目录，刷新页面即可。项目根目录已附带一份 `echarts.min.js` 时，新生成的 HTML 会自动使用本地文件。
+
+- **递归爬取时频繁“触发速率限制，休息 5 秒”或未按 k/d 爬完**  
+  Semantic Scholar 无 Key 时约 100 次/5 分钟。脚本已改为：每次 S2 请求前固定间隔 3 秒、遇 429 时自动指数退避重试（5s→10s→20s→40s），直到成功或重试用尽。若仍经常中断，可适当减小 `-k` 或 `-d`，或到 [Semantic Scholar](https://www.semanticscholar.org/product/api) 申请免费 API Key 后配置到环境变量 `S2_API_KEY`（若后续支持）。

@@ -49,17 +49,46 @@ def fetch_arxiv_paper(paper_id):
         return None
 
 
+def _request_s2_with_retry(url, max_retries=4, base_delay=5):
+    """请求 S2 API，遇 429 时指数退避重试。无 Key 时 S2 约 100 次/5 分钟，故请求前留间隔。"""
+    for attempt in range(max_retries + 1):
+        time.sleep(3 if attempt == 0 else 0)  # 每次调用前间隔，降低触发 429 概率
+        try:
+            r = requests.get(url, timeout=20)
+            if r.status_code == 200:
+                return r.json()
+            if r.status_code == 429:
+                delay = base_delay * (2 ** attempt)
+                print(f"   ⚠️ 速率限制 (429)，{delay} 秒后重试 ({attempt + 1}/{max_retries + 1})...")
+                time.sleep(delay)
+                continue
+            if r.status_code == 404:
+                return None
+            if attempt < max_retries and r.status_code in (503, 502):
+                delay = base_delay * (2 ** attempt)
+                print(f"   ⚠️ 服务暂时不可用 ({r.status_code})，{delay} 秒后重试...")
+                time.sleep(delay)
+                continue
+            return None
+        except Exception as e:
+            if attempt < max_retries:
+                delay = base_delay * (2 ** attempt)
+                print(f"   ⚠️ 请求异常: {e}，{delay} 秒后重试...")
+                time.sleep(delay)
+            else:
+                raise
+    return None
+
+
 def fetch_paper_from_semantic_scholar(paper_id_s2):
     """
     通过 Semantic Scholar paperId 获取论文的 title, abstract, authors（用于无 ArXiv ID 的论文）
     """
     url = f"https://api.semanticscholar.org/graph/v1/paper/{paper_id_s2}?fields=title,abstract,authors,year"
     try:
-        time.sleep(1)
-        r = requests.get(url, timeout=15)
-        if r.status_code != 200:
+        data = _request_s2_with_retry(url)
+        if not data:
             return None
-        data = r.json()
         authors = [a.get("name") or "" for a in data.get("authors", [])]
         return {
             "title": data.get("title") or "",
@@ -76,7 +105,7 @@ def fetch_paper_from_semantic_scholar(paper_id_s2):
 def fetch_related_papers_via_semantic_scholar(arxiv_id, top_n=5):
     """
     获取该论文的 references 和 citations，并按引用量排序各取前 top_n 篇。
-    返回结构中包含 paperId（S2）以便无 arxiv_id 时补全摘要/作者。
+    遇 429 时指数退避重试，避免因速率限制导致漏爬。
     """
     print(f"[*] [S2] 获取引用关系 (top {top_n}): {arxiv_id} ...")
     url = (
@@ -87,59 +116,50 @@ def fetch_related_papers_via_semantic_scholar(arxiv_id, top_n=5):
         "citations.title,citations.externalIds,citations.citationCount,citations.year,citations.paperId"
     )
     try:
-        time.sleep(1.5)
-        r = requests.get(url, timeout=15)
-        if r.status_code == 200:
-            data = r.json()
-            references = []
-            if data.get("references"):
-                for item in data["references"]:
-                    if not item.get("title"):
-                        continue
-                    arxiv_id_ref = None
-                    if item.get("externalIds") and item["externalIds"].get("ArXiv"):
-                        arxiv_id_ref = item["externalIds"]["ArXiv"]
-                    references.append({
-                        "title": item["title"],
-                        "arxiv_id": arxiv_id_ref,
-                        "citation_count": item.get("citationCount") or 0,
-                        "year": item.get("year") or 0,
-                        "paper_id_s2": item.get("paperId"),
-                    })
-            references = sorted(
-                references, key=lambda x: (x["citation_count"] or 0), reverse=True
-            )[:top_n]
+        data = _request_s2_with_retry(url, max_retries=4, base_delay=5)
+        if not data:
+            print("   ⚠️ 未获取到数据（未收录或已达重试上限）")
+            return {"references": [], "citations": []}
+        references = []
+        if data.get("references"):
+            for item in data["references"]:
+                if not item.get("title"):
+                    continue
+                arxiv_id_ref = None
+                if item.get("externalIds") and item["externalIds"].get("ArXiv"):
+                    arxiv_id_ref = item["externalIds"]["ArXiv"]
+                references.append({
+                    "title": item["title"],
+                    "arxiv_id": arxiv_id_ref,
+                    "citation_count": item.get("citationCount") or 0,
+                    "year": item.get("year") or 0,
+                    "paper_id_s2": item.get("paperId"),
+                })
+        references = sorted(
+            references, key=lambda x: (x["citation_count"] or 0), reverse=True
+        )[:top_n]
 
-            citations = []
-            if data.get("citations"):
-                for item in data["citations"]:
-                    if not item.get("title"):
-                        continue
-                    arxiv_id_cite = None
-                    if item.get("externalIds") and item["externalIds"].get("ArXiv"):
-                        arxiv_id_cite = item["externalIds"]["ArXiv"]
-                    citations.append({
-                        "title": item["title"],
-                        "arxiv_id": arxiv_id_cite,
-                        "citation_count": item.get("citationCount") or 0,
-                        "year": item.get("year") or 0,
-                        "paper_id_s2": item.get("paperId"),
-                    })
-            citations = sorted(
-                citations, key=lambda x: (x["citation_count"] or 0), reverse=True
-            )[:top_n]
+        citations = []
+        if data.get("citations"):
+            for item in data["citations"]:
+                if not item.get("title"):
+                    continue
+                arxiv_id_cite = None
+                if item.get("externalIds") and item["externalIds"].get("ArXiv"):
+                    arxiv_id_cite = item["externalIds"]["ArXiv"]
+                citations.append({
+                    "title": item["title"],
+                    "arxiv_id": arxiv_id_cite,
+                    "citation_count": item.get("citationCount") or 0,
+                    "year": item.get("year") or 0,
+                    "paper_id_s2": item.get("paperId"),
+                })
+        citations = sorted(
+            citations, key=lambda x: (x["citation_count"] or 0), reverse=True
+        )[:top_n]
 
-            print(f"   --> 参考文献 top{top_n}: {len(references)} 篇, 被引文献 top{top_n}: {len(citations)} 篇")
-            return {"references": references, "citations": citations}
-
-        if r.status_code == 404:
-            print("❌ Semantic Scholar 未收录此论文")
-        elif r.status_code == 429:
-            print("⚠️ 触发速率限制，休息 5 秒...")
-            time.sleep(5)
-        else:
-            print(f"⚠️ API 异常: {r.status_code}")
-        return {"references": [], "citations": []}
+        print(f"   --> 参考文献 top{top_n}: {len(references)} 篇, 被引文献 top{top_n}: {len(citations)} 篇")
+        return {"references": references, "citations": citations}
     except Exception as e:
         print(f"❌ 网络错误: {e}")
         return {"references": [], "citations": []}
@@ -369,16 +389,23 @@ def generate_html(json_file, output_html_file, data=None):
                 "value": t.get("relation", ""),
             })
 
+    # 优先使用同目录下的 echarts.min.js（避免 CDN 超时/被拦截），否则用 unpkg
+    out_dir = os.path.dirname(os.path.abspath(output_html_file))
+    echarts_local = os.path.join(out_dir, "echarts.min.js")
+    script_src = "echarts.min.js" if os.path.exists(echarts_local) else "https://unpkg.com/echarts@5.4.3/dist/echarts.min.js"
+
     html_content = f"""<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Top Citations KG - {paper_meta.get('title', '')[:50]}</title>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="{script_src}"></script>
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        html, body {{ height: 100%; }}
         body {{ background: #f5f5f5; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }}
-        #main {{ width: 100vw; height: 100vh; }}
+        #main {{ width: 100%; height: 100%; min-height: 400px; }}
         .panel {{
             position: absolute; background: white; border-radius: 8px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.1); padding: 20px; font-size: 14px; z-index: 999; max-width: 420px;
@@ -408,30 +435,42 @@ def generate_html(json_file, output_html_file, data=None):
         <div class="stat-item"><span class="stat-label">被引用的论文 (top N):</span> <span class="stat-value">{data.get('related_papers_count', {}).get('citations', 0)}</span></div>
     </div>
     <script type="text/javascript">
-        var chartDom = document.getElementById('main');
-        var myChart = echarts.init(chartDom);
-        var option = {{
-            tooltip: {{ formatter: function(params) {{
-                if (params.dataType === 'node') return params.name + ' (' + (params.value || '') + ')';
-                return (params.source && params.source.name) + ' ' + (params.value || '') + ' ' + (params.target && params.target.name);
-            }}}},
-            legend: {{ data: {json.dumps([c['name'] for c in categories])} }},
-            series: [{{
-                type: 'graph', layout: 'force',
-                data: {json.dumps(echarts_nodes)},
-                links: {json.dumps(echarts_links)},
-                categories: {json.dumps(categories)},
-                roam: true,
-                label: {{ show: true, position: 'right', formatter: '{{b}}' }},
-                edgeLabel: {{ fontSize: 11, formatter: '{{c}}' }},
-                edgeSymbol: ['none', 'arrow'], edgeSymbolSize: 10,
-                lineStyle: {{ color: 'source', curveness: 0.3 }},
-                force: {{ repulsion: 1500, edgeLength: 250 }},
-                emphasis: {{ focus: 'adjacency', lineStyle: {{ width: 4 }} }}
-            }}]
-        }};
-        myChart.setOption(option);
-        window.addEventListener('resize', function() {{ myChart.resize(); }});
+        function initChart() {{
+            if (typeof echarts === 'undefined') {{
+                document.getElementById('main').innerHTML = '<p style="padding:20px">无法加载 ECharts，请检查网络或 CDN。</p>';
+                return;
+            }}
+            var chartDom = document.getElementById('main');
+            var myChart = echarts.init(chartDom);
+            var option = {{
+                tooltip: {{ formatter: function(params) {{
+                    if (params.dataType === 'node') return params.name + ' (' + (params.value || '') + ')';
+                    return (params.source && params.source.name) + ' ' + (params.value || '') + ' ' + (params.target && params.target.name);
+                }}}},
+                legend: {{ data: {json.dumps([c['name'] for c in categories])} }},
+                series: [{{
+                    type: 'graph', layout: 'force',
+                    data: {json.dumps(echarts_nodes)},
+                    links: {json.dumps(echarts_links)},
+                    categories: {json.dumps(categories)},
+                    roam: true,
+                    label: {{ show: true, position: 'right', formatter: '{{b}}' }},
+                    edgeLabel: {{ fontSize: 11, formatter: '{{c}}' }},
+                    edgeSymbol: ['none', 'arrow'], edgeSymbolSize: 10,
+                    lineStyle: {{ color: 'source', curveness: 0.3 }},
+                    force: {{ repulsion: 1500, edgeLength: 250 }},
+                    emphasis: {{ focus: 'adjacency', lineStyle: {{ width: 4 }} }}
+                }}]
+            }};
+            myChart.setOption(option);
+            setTimeout(function() {{ myChart.resize(); }}, 100);
+            window.addEventListener('resize', function() {{ myChart.resize(); }});
+        }}
+        if (document.readyState === 'loading') {{
+            document.addEventListener('DOMContentLoaded', initChart);
+        }} else {{
+            initChart();
+        }}
     </script>
 </body>
 </html>"""
