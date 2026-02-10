@@ -25,6 +25,13 @@ import argparse
 from openai import OpenAI
 
 from config import API_KEY, BASE_URL, MODEL_NAME, is_api_configured
+from class_schema import (
+    get_all_type_names,
+    normalize_entity_type,
+    get_types_for_llm_prompt,
+    get_categories_for_entities,
+)
+ALLOWED_TYPES = get_all_type_names()
 
 
 def fetch_arxiv_paper(paper_id):
@@ -205,16 +212,17 @@ def batch_ensure_metadata(paper_list):
 
 
 def extract_knowledge_with_llm(paper_info):
-    """可选：LLM 深度抽取。未配置 API Key 则跳过。"""
+    """可选：LLM 深度抽取。未配置 API Key 则跳过。实体类型必须为 classes.json 中的类型。"""
     if not is_api_configured():
         return {"entities": [], "triples": []}
     print(f"[*] [LLM] 深度抽取: {paper_info['title'][:30]}...")
     client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
-    system_prompt = """你是一个知识图谱专家。从论文摘要中提取实体和关系。
-实体类型: AIPaper, AIModel, Dataset, Metric
-关系类型: proposed_model, baseline_model, evaluated_on, uses_metric
+    allowed_types = get_types_for_llm_prompt()
+    system_prompt = f"""你是一个知识图谱专家。从论文摘要中提取实体和关系。
+实体类型必须且仅能从以下类型中选择（来自 classes.json 规范）: {allowed_types}
+关系类型: proposed_model, baseline_model, evaluated_on, uses_metric, cites, author_of
 要求：triples 必须使用 "head" 和 "tail" 字段（不要用 subject/object）；head 和 tail 的值必须是实体名称（如论文标题、模型名、数据集名），不要用 E1、E2 等 ID。
-严格输出 JSON: {"entities": [{"name": "...", "type": "..."}], "triples": [{"head": "...", "relation": "...", "tail": "..."}]}"""
+严格输出 JSON: {{"entities": [{{"name": "...", "type": "..."}}], "triples": [{{"head": "...", "relation": "...", "tail": "..."}}]}}"""
     try:
         response = client.chat.completions.create(
             model=MODEL_NAME,
@@ -261,18 +269,20 @@ def build_top_citations_kg(arxiv_id, top_n=5, run_llm=False):
             arxiv_id_val = p.get("arxiv_id") or p.get("id", "")
             entities.append({
                 "name": name,
-                "type": "AIPaper",
+                "type": normalize_entity_type("AIPaper", allowed=ALLOWED_TYPES),
                 "arxiv_id": arxiv_id_val,
             })
             seen_names.add(name)
     for p in all_papers:
         for a in p.get("authors", []):
+            a = (a or "").strip()
             if a and a not in seen_names:
-                entities.append({"name": a, "type": "Researcher"})
+                entities.append({"name": a, "type": normalize_entity_type("Researcher", allowed=ALLOWED_TYPES)})
                 seen_names.add(a)
 
     for p in all_papers:
         for a in p.get("authors", []):
+            a = (a or "").strip()
             if a and p.get("title"):
                 triples.append({"head": a, "relation": "author_of", "tail": p["title"]})
     for r in refs:
@@ -291,7 +301,8 @@ def build_top_citations_kg(arxiv_id, top_n=5, run_llm=False):
                 n = e.get("name")
                 if n:
                     if n not in seen_names:
-                        entities.append({"name": n, "type": e.get("type", "AIPaper")})
+                        raw_type = e.get("type", "Thesis")
+                        entities.append({"name": n, "type": normalize_entity_type(raw_type, allowed=ALLOWED_TYPES)})
                         seen_names.add(n)
                     eid = e.get("id")
                     if eid:
@@ -354,34 +365,37 @@ def generate_html(json_file, output_html_file, data=None):
     entities = kg.get("entities", [])
     triples = kg.get("triples", [])
 
-    type_set = set(e.get("type", "AIPaper") for e in entities)
-    category_map = {t: i for i, t in enumerate(type_set)}
-    categories = [{"name": t} for t in type_set]
-    if "Researcher" not in category_map:
-        categories.append({"name": "Researcher"})
-        category_map["Researcher"] = len(categories) - 1
+    # 基于 classes.json 扩展：仅使用 schema 中存在的类型作为 categories
+    raw_types = [e.get("type", "Thesis") for e in entities]
+    type_list = get_categories_for_entities(raw_types)
+    category_map = {t: i for i, t in enumerate(type_list)}
+    categories = [{"name": t} for t in type_list]
 
-    echarts_nodes = []
-    seen = set()
+    # 按 name 去重：同一人（同名）只保留一个节点，避免多篇论文作者出现重复节点
+    name_to_entity = {}
     for e in entities:
-        n = e.get("name")
-        if n and n not in seen:
-            sz = 50 if e.get("type") == "AIPaper" else 25
-            echarts_nodes.append({
-                "name": n,
-                "category": category_map.get(e.get("type", "AIPaper"), 0),
-                "symbolSize": sz,
-                "draggable": True,
-                "value": e.get("type", "AIPaper"),
-            })
-            seen.add(n)
+        n = (e.get("name") or "").strip()
+        if n and n not in name_to_entity:
+            name_to_entity[n] = e
+    echarts_nodes = []
+    for n, e in name_to_entity.items():
+        norm_type = normalize_entity_type(e.get("type", "Thesis"), allowed=ALLOWED_TYPES)
+        sz = 50 if norm_type in ("Thesis", "Article", "CreativeWork") else 25
+        echarts_nodes.append({
+            "name": n,
+            "category": category_map.get(norm_type, 0),
+            "symbolSize": sz,
+            "draggable": True,
+            "value": norm_type,
+        })
+    seen = set(name_to_entity.keys())
 
-    # 兼容 head/tail 与 LLM 常出的 subject/object；只保留两端都在节点集合中的边，避免悬空边
-    node_names = {e.get("name") for e in entities if e.get("name")}
+    # 兼容 head/tail 与 subject/object；只保留两端都在节点集合中的边；head/tail 做 strip 与节点名一致
+    node_names = seen
     echarts_links = []
     for t in triples:
-        head = t.get("head") or t.get("subject")
-        tail = t.get("tail") or t.get("object")
+        head = (t.get("head") or t.get("subject") or "").strip()
+        tail = (t.get("tail") or t.get("object") or "").strip()
         if head and tail and head in node_names and tail in node_names:
             echarts_links.append({
                 "source": head,
@@ -428,8 +442,8 @@ def generate_html(json_file, output_html_file, data=None):
         <p><strong>ArXiv ID:</strong> <code>{paper_meta.get('id', '')}</code></p>
     </div>
     <div class="panel stats">
-        <div class="stat-item"><span class="stat-label">论文节点:</span> <span class="stat-value">{sum(1 for e in entities if e.get('type') == 'AIPaper')}</span></div>
-        <div class="stat-item"><span class="stat-label">研究者节点:</span> <span class="stat-value">{sum(1 for e in entities if e.get('type') == 'Researcher')}</span></div>
+        <div class="stat-item"><span class="stat-label">论文节点:</span> <span class="stat-value">{sum(1 for e in name_to_entity.values() if e.get('type') == 'AIPaper')}</span></div>
+        <div class="stat-item"><span class="stat-label">研究者节点:</span> <span class="stat-value">{sum(1 for e in name_to_entity.values() if e.get('type') == 'Researcher')}</span></div>
         <div class="stat-item"><span class="stat-label">关系数:</span> <span class="stat-value">{len(triples)}</span></div>
         <div class="stat-item"><span class="stat-label">引用的论文 (top N):</span> <span class="stat-value">{data.get('related_papers_count', {}).get('references', 0)}</span></div>
         <div class="stat-item"><span class="stat-label">被引用的论文 (top N):</span> <span class="stat-value">{data.get('related_papers_count', {}).get('citations', 0)}</span></div>

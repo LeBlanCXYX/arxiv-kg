@@ -19,8 +19,10 @@ from top_citations_kg import (
     fetch_related_papers_via_semantic_scholar,
     batch_ensure_metadata,
     generate_html,
+    ALLOWED_TYPES,
 )
 from top_citations_kg import extract_knowledge_with_llm  # 可选 --llm
+from class_schema import normalize_entity_type
 
 
 def run_recursive_citations(arxiv_id, top_k=5, depth=2, run_llm=False):
@@ -83,18 +85,20 @@ def run_recursive_citations(arxiv_id, top_k=5, depth=2, run_llm=False):
         if name and name not in seen_names:
             entities.append({
                 "name": name,
-                "type": "AIPaper",
+                "type": normalize_entity_type("AIPaper", allowed=ALLOWED_TYPES),
                 "arxiv_id": p.get("arxiv_id") or p.get("id", ""),
             })
             seen_names.add(name)
     for p in all_papers:
         for a in p.get("authors", []):
+            a = (a or "").strip()
             if a and a not in seen_names:
-                entities.append({"name": a, "type": "Researcher"})
+                entities.append({"name": a, "type": normalize_entity_type("Researcher", allowed=ALLOWED_TYPES)})
                 seen_names.add(a)
 
     for p in all_papers:
         for a in p.get("authors", []):
+            a = (a or "").strip()
             if a and p.get("title"):
                 triples.append({"head": a, "relation": "author_of", "tail": p["title"]})
     for h, t in edges:
@@ -109,7 +113,8 @@ def run_recursive_citations(arxiv_id, top_k=5, depth=2, run_llm=False):
                 n = e.get("name")
                 if n:
                     if n not in seen_names:
-                        entities.append({"name": n, "type": e.get("type", "AIPaper")})
+                        raw_type = e.get("type", "Thesis")
+                        entities.append({"name": n, "type": normalize_entity_type(raw_type, allowed=ALLOWED_TYPES)})
                         seen_names.add(n)
                     if e.get("id"):
                         id_to_name[e["id"]] = n

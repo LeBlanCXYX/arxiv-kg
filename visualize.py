@@ -2,10 +2,13 @@ import argparse
 import json
 import os
 
+from class_schema import get_all_type_names, normalize_entity_type, get_categories_for_entities
+
 # ================= 配置区域 =================
 INPUT_FILE = "final_kg_5_papers.json"
 OUTPUT_FILE = "knowledge_graph.html"
 # ===========================================
+ALLOWED_TYPES = get_all_type_names()
 
 
 def generate_html(json_file, output_file=None):
@@ -26,38 +29,43 @@ def generate_html(json_file, output_file=None):
     entities = kg.get("entities", [])
     triples = kg.get("triples", [])
 
-    # 准备 ECharts 节点与类别
-    type_set = set(e.get("type", "AIPaper") for e in entities)
-    category_map = {t: i for i, t in enumerate(type_set)}
-    categories = [{"name": t} for t in type_set]
+    # 基于 classes.json 扩展：仅使用 schema 中存在的类型作为 categories
+    raw_types = [e.get("type", "Thesis") for e in entities]
+    type_list = get_categories_for_entities(raw_types)
+    category_map = {t: i for i, t in enumerate(type_list)}
+    categories = [{"name": t} for t in type_list]
 
+    # 按 name 去重：同一人（同名）只保留一个节点
+    name_to_entity = {}
+    for e in entities:
+        name = (e.get("name") or "").strip()
+        if name and name not in name_to_entity:
+            name_to_entity[name] = e
     echarts_nodes = []
     seen_nodes = set()
-    for e in entities:
-        name = e.get("name")
-        if not name or name in seen_nodes:
-            continue
-        etype = e.get("type", "AIPaper")
+    for name, e in name_to_entity.items():
+        etype = normalize_entity_type(e.get("type", "Thesis"), allowed=ALLOWED_TYPES)
         echarts_nodes.append({
             "name": name,
-            "category": category_map[etype],
-            "symbolSize": 50 if etype == "AIPaper" else 30,
+            "category": category_map.get(etype, 0),
+            "symbolSize": 50 if etype in ("Thesis", "Article", "CreativeWork") else 30,
             "draggable": True,
             "value": etype,
         })
         seen_nodes.add(name)
 
-    if "Researcher" not in category_map:
-        categories.append({"name": "Researcher"})
-        category_map["Researcher"] = len(categories) - 1
-
+    person_type = normalize_entity_type("Researcher", allowed=ALLOWED_TYPES)
+    if person_type not in category_map:
+        categories.append({"name": person_type})
+        category_map[person_type] = len(categories) - 1
     for author in paper_meta.get("authors", []):
+        author = (author or "").strip()
         if author and author not in seen_nodes:
             echarts_nodes.append({
                 "name": author,
-                "category": category_map["Researcher"],
+                "category": category_map[person_type],
                 "symbolSize": 20,
-                "value": "Researcher",
+                "value": person_type,
             })
             seen_nodes.add(author)
 
@@ -70,8 +78,8 @@ def generate_html(json_file, output_file=None):
 
     # 连线：兼容 head/tail 与 subject/object，仅保留两端都在节点集合中的边
     for t in triples:
-        head = t.get("head") or t.get("subject")
-        tail = t.get("tail") or t.get("object")
+        head = (t.get("head") or t.get("subject") or "").strip()
+        tail = (t.get("tail") or t.get("object") or "").strip()
         if head and tail and head in seen_nodes and tail in seen_nodes:
             echarts_links.append({
                 "source": head,
